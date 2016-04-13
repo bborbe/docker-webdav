@@ -10,8 +10,9 @@ chown root:www-data /etc/apache2/webdav.password
 chmod 640 /etc/apache2/webdav.password
 
 echo "set owner for /webdav"
-chown -R www-data:www-data /webdav
-chmod 750 /webdav
+mkdir -p /data/webdav
+chown -R www-data:www-data /data/webdav
+chmod 750 /data/webdav
 
 echo "starting apache with $@"
 exec "$@"

@@ -29,7 +29,7 @@ RUN set -x \
 
 EXPOSE 80
 
-VOLUME ["/webdav"]
+VOLUME ["/data/webdav"]
 
 ADD webdav.conf /etc/apache2/sites-enabled/
 
