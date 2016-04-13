@@ -7,7 +7,8 @@ build:
 	docker build --no-cache --rm=true -t bborbe/webdav .
 
 run:
-	docker run -h example.com bborbe/webdav:latest
+	mkdir -p /tmp/webdav
+	docker run -h example.com -p 80:80 -v /tmp/webdav:/webdav bborbe/webdav:latest
 
 shell:
 	docker run -i -t bborbe/webdav:latest /bin/bash
