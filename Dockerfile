@@ -31,9 +31,9 @@ EXPOSE 80
 
 VOLUME ["/data/webdav"]
 
-ADD webdav.conf /etc/apache2/sites-enabled/
+COPY webdav.conf /etc/apache2/sites-enabled/
 
-ADD entrypoint.sh /usr/local/bin/
+COPY entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 CMD ["/usr/sbin/apache2","-D","FOREGROUND"]
