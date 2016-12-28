@@ -1,4 +1,4 @@
-# Webdav Dockerfile
+# Webdav
 
 ## Copyright and license
 
