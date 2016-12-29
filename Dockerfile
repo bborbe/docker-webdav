@@ -1,5 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER Benjamin Borbe <bborbe@rocketnews.de>
+ARG VERSION
+
 ENV HOME /root
 ENV LANG en_US.UTF-8
 RUN locale-gen en_US.UTF-8
