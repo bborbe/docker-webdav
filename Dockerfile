@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 MAINTAINER Benjamin Borbe <bborbe@rocketnews.de>
 ARG VERSION
 
@@ -28,19 +28,15 @@ ENV APACHE_RUN_DIR /var/run/apache2
 RUN set -x \
 	&& a2enmod dav dav_fs \
 	&& a2dissite 000-default \
-	&& mkdir -p /var/lock/apache2 \
-	&& chown www-data /var/lock/apache2 \
+	&& mkdir -p /var/lock/apache2 /var/run/apache2 \
+	&& chown www-data /var/lock/apache2 /var/run/apache2 \
 	&& ln -sf /dev/stdout /var/log/apache2/access.log \
 	&& ln -sf /dev/stderr /var/log/apache2/error.log \
 	&& ln -sf /dev/stdout /var/log/apache2/other_vhosts_access.log
 
+COPY files/webdav.conf /etc/apache2/sites-enabled/webdav.conf
+COPY files/entrypoint.sh /usr/local/bin/entrypoint.sh
+
 EXPOSE 80
-
-VOLUME ["/data/webdav"]
-
-COPY webdav.conf /etc/apache2/sites-enabled/
-
-COPY entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-
 CMD ["/usr/sbin/apache2","-D","FOREGROUND"]
